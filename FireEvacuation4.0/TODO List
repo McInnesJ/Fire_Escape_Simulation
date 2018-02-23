@@ -1,0 +1,22 @@
+- Static Objects
+	- Walk over static objects
+- Walls
+	- will allow for different shaped rooms
+	- Probably require a new layer in the floorplan
+- Density Issues
+	- Stress/panic
+	- Person Density goes up with increased stress
+	- Health goes down with increased density
+- Improve person logic
+	- later; route planning
+	- (maybe different strategies)
+- Configuration class
+	- automated set up, multiple runs changing a single param.
+- Improved output
+	- report object
+	- print to txt/csv
+	- save results of that run for later
+- Health restoration?
+
+
+-Floor plan element redundant?

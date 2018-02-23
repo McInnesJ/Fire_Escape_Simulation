@@ -1,0 +1,6 @@
+Stress/Panick System
+
+
+Will start by introducing global variable stress into context. Read out value at end of each cycle.
+
+How will we have stress affect the system

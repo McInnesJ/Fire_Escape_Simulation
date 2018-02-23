@@ -1,0 +1,59 @@
+HOW TO
+
+Quick explanation on how to use the program;
+
+The program works by creating new scenarios using a scenario builder. The scenario builder is an interface, essentially this is just a template for how a class should look. You can then create lot's of classes that implement this interface.
+This is handy because it means we can create lots of scenarios without deleting them.
+
+To test your own scenario the first thing you need to do is create a new class that implements the ScenarioBuilder interface.
+If you are using eclipse simply right click on the scenario's package, go to new then click on class. In the wizzard give 
+your class a name, probably something along the lines of BlankScenarioBuilder then go to interfaces and click add. Start typing in scenario builder and it should come up. It is important you create these classes in the 
+scenarios package as it will not work otherwise.
+
+Your new class will have 1 method on it by default. It will have some comments in but they aren't important and you can delete them.
+This method is where you set up what you want on the floor plan for this test.
+
+	List<Layer> layers = new ArrayList<Layer>();
+		int width = 4; //maybe give this info to context? 
+		int hight = 4; //maybe give this info to context? 
+		
+		for(LayerType type : LayerType.values()){
+			layers.add(new Layer(width,hight,type));
+		}
+		FloorPlan floorPlan = new FloorPlan(layers, width, hight);
+		
+This block of code sets up the size each layer on the floor plan and the floor plan itself, you should copy and paste this in every 
+time but feel free to change the width and hight depending on how large you want the floor plan to be.
+
+to add something to the floor plan you need to do something along the lines of
+
+	floorPlan.getLayer(LayerType.type).add(x,y, new Object(parameters))
+	
+the 'type' after LayerType. has 5 allowed values; Exit, StaticElement, Fire, Smoke, Person. if you type in LayerType. then hit
+ctrl space these will show up and you can pick the one you want. Make sure you pick the right layer for what you want to add, i.e.
+fire for fire, person for person etc...
+
+x and y are the coordinates of where you want to add that object
+
+Object can be either an 
+- Exit, which has no parameters,
+- A StaticElement, which has no parameters,
+- A FireSource, which has 1 parameter, slowness. i.e. if you pass in a value n it will move every nth cycle.
+- A SmokeSource, which has 1 parameter, slowness. i.e. if you pass in a value n it will move every nth cycle.
+- A person, which has 1 parameter, slowness. i.e. if you pass in a value n it will move every nth cycle.
+
+
+Once you have set up the floor plan the way you want it hit save and open the ScenarioInitialiser (found in the same package).
+Here you will see this line of code;
+
+	ScenarioBuilder builder = new DefaultScenarioBuilder();
+
+Simply replace 'DefaultScenarioBuilder();' with the name of your new scenario builder.
+
+Save this as well then right click on Application, go to run as, the java application. and that's you done. The results will get 
+printed out in the console.
+
+To use the program you should, all being well, only ever need to use 1 preexisting class, the scenario initialiser.
+
+Hope this is clear enough, if not send me a text and I'll try and explain better. 
+

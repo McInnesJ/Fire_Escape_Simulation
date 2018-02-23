@@ -1,0 +1,46 @@
+1.       Its good to aim for immutability – that is values that cant change. It makes your code safer., So for that reason, you should make the private fields final which says they cannot change. private final int width;
+
+2.       It probably makes sense for the layer to keep track of which type it is for, ie new Layer(type,width,height);
+
+3.       Rather than set up the layers as you did, you can do it in the same way you use in getSquare:
+
+For(LayerType type : LayerType.values() {
+
+Layers.put(type,new Layer(type,height,width);
+
+}
+
+This means if you add a new LayerType for any reason, it will get automatically added
+
+4.       getSquare: its better to use Lists rather than arrays. They have more functionality and are easier to use, so:
+
+List<FloorPlanElement> squares = new ArrayList<FloorPlanElelement>();
+
+For(LayerType type : LayerType.values() {
+
+                squares.add(layers.get(type).getElement(x,y);
+
+}
+
+return squares;
+
+Its a bit less cluttered – no need for the i
+
+Also. I’d cut the add line into 2 – makes it easier to read
+
+Layer layer = this.layers.get(type);
+
+squares.add(layer.get(x,y));
+
+5.       I’d say you wont need checkForConflict – conflict only really happens within a layer – ie for the layer controllers. Things can exist in the same square in different layers: its just something that needs to be resolved in the next time period (oops i’m dead).
+
+6.       In checkForConflict (if you keep it), the java style would be to replace the last if/else with the following:
+
+return numberOfSquares > 1;
+
+            If you look, you’ll see it does exactly the same thing
+ 
+Going to head home now, so yahoo or text is the place from here on in
+ 
+Give me a call if you don’t get the above
+As I say, its mostly just style other than point 5.
